@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Projeto de Extensão II - CAPSi Foz do Iguaçu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-stone-50 text-slate-700">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-teal-800 tracking-tight">Proj. Extensão II</span>
+                    <span class="hidden md:block ml-2 text-sm text-slate-500">| CAPSi Foz do Iguaçu</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('dashboard')" id="nav-dashboard" class="nav-btn nav-active px-3 py-2 text-sm transition-colors hover:text-teal-600">Visão Geral</button>
+                    <button onclick="scrollToSection('context')" id="nav-context" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Contexto</button>
+                    <button onclick="scrollToSection('diagnosis')" id="nav-diagnosis" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Diagnóstico</button>
+                    <button onclick="scrollToSection('solution')" id="nav-solution" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Solução</button>
+                    <button onclick="scrollToSection('skills')" id="nav-skills" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Competências</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-500 hover:text-teal-700 p-2 focus:outline-none" aria-label="Abrir menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-stone-200 shadow-lg absolute w-full top-16 left-0">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('dashboard')" id="mob-nav-dashboard" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Visão Geral</button>
+                <button onclick="scrollToSection('context')" id="mob-nav-context" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Contexto</button>
+                <button onclick="scrollToSection('diagnosis')" id="mob-nav-diagnosis" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Diagnóstico</button>
+                <button onclick="scrollToSection('solution')" id="mob-nav-solution" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Solução</button>
+                <button onclick="scrollToSection('skills')" id="mob-nav-skills" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Competências</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- SECTION 1: DASHBOARD / HERO -->
+        <section id="dashboard" class="animate-fade-in scroll-mt-24">
+            <div class="text-center mb-10">
+                <h1 class="text-4xl font-extrabold text-slate-900 mb-2">Identificação da Situação Problema</h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Relatório de diagnóstico e proposta de solução tecnológica para o gerenciamento de prontuários inativos.</p>
+                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-teal-700 bg-teal-50 px-4 py-2 rounded-full border border-teal-100">
+                    <span>Aluno: <strong>Raphael Martins Pimenta</strong></span>
+                    <span>•</span>
+                    <span>Curso: <strong>Engenharia de Software</strong></span>
+                </div>
+            </div>
+
+            <!-- Introductory Paragraph -->
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 mb-8">
+                <h3 class="text-lg font-semibold text-teal-800 mb-2">Sobre este Painel</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Este painel interativo resume os achados do diagnóstico realizado no Centro de Atenção Psicossocial Infantojuvenil (CAPSi). 
+                    Abaixo, você encontra as métricas críticas identificadas durante a visita técnica, destacando a saturação do espaço físico e a ineficiência operacional que motivaram a proposta de intervenção.
+                </p>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Metric 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-amber-500 hover:shadow-md transition-all-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-slate-500 uppercase">Saturação do Arquivo</h3>
+                        <span class="text-amber-500 text-xl" role="img" aria-label="Alerta">⚠️</span>
+                    </div>
+                    <div class="flex items-end items-baseline">
+                        <span class="text-4xl font-bold text-slate-800">100%</span>
+                        <span class="text-sm text-slate-500 ml-2">Capacidade Atingida</span>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600">Armários completamente cheios, impedindo funcionamento físico do espaço no estabelecimento.</p>
+                </div>
+
+                <!-- Metric 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500 hover:shadow-md transition-all-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-slate-500 uppercase">Tempo de Busca</h3>
+                        <span class="text-red-500 text-xl" role="img" aria-label="Cronômetro">⏱️</span>
+                    </div>
+                    <div class="flex items-end items-baseline">
+                        <span class="text-3xl font-bold text-slate-800">30m - 1h</span>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600">Tempo estimado para recuperar prontuários antigos sem indexação.</p>
+                </div>
+
+                <!-- Metric 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-teal-500 hover:shadow-md transition-all-300">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-sm font-medium text-slate-500 uppercase">Solução Proposta</h3>
+                        <span class="text-teal-500 text-xl" role="img" aria-label="Foguete">🚀</span>
+                    </div>
+                    <div class="flex items-end items-baseline">
+                        <span class="text-2xl font-bold text-slate-800">Sistema DPR</span>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600">Catalogação Digital + Back-end Java para rastreabilidade total.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CONTEXTO -->
+        <section id="context" class="border-t border-stone-200 pt-10 scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">Contexto Organizacional</h2>
+                <p class="mt-2 text-slate-600">
+                    Entenda onde o projeto está inserido. O CAPSi é uma unidade vital para a saúde mental infantojuvenil em Foz do Iguaçu. 
+                    Nesta seção, detalhamos o ambiente, o fluxo de documentos e os desafios enfrentados pela equipe no dia a dia.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Org Card -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-stone-100">
+                    <div class="bg-teal-700 px-6 py-4">
+                        <h3 class="text-white font-semibold flex items-center">
+                            <span class="mr-2" role="img" aria-label="Hospital">🏥</span> A Organização: CAPSi
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4 text-slate-700">
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2 font-bold">•</span>
+                                <div>
+                                    <strong>Foco:</strong> Atendimento público (SUS) para crianças e adolescentes com transtornos mentais graves.
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2 font-bold">•</span>
+                                <div>
+                                    <strong>Regulamentação:</strong> Sujeito a normas municipais. Documentos inativos devem ir para o depósito da Prefeitura.
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2 font-bold">•</span>
+                                <div>
+                                    <strong>Infraestrutura Atual:</strong> Sistemas apenas para prontuários ativos. Arquivo morto é 100% físico e manual.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Problem Detail Card -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-stone-100">
+                    <div class="bg-amber-600 px-6 py-4">
+                        <h3 class="text-white font-semibold flex items-center">
+                            <span class="mr-2" role="img" aria-label="Gráfico descendo">📉</span> O Problema: Prontuários Mortos
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="bg-amber-50 p-3 rounded-lg border border-amber-100">
+                                <h4 class="font-bold text-amber-800 text-sm uppercase mb-1">Impacto Físico</h4>
+                                <p class="text-sm text-slate-700">Limitação no espaço físico do estabelecimento, prejudicando futuras expansões para projetos sociais.</p>
+                            </div>
+                            <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                                <h4 class="font-bold text-red-800 text-sm uppercase mb-1">Risco Operacional</h4>
+                                <p class="text-sm text-slate-700">Deterioração por umidade. Risco legal de perda de histórico médico.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: DIAGNÓSTICO (Charts) -->
+        <section id="diagnosis" class="border-t border-stone-200 pt-10 scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">Diagnóstico e Análise de Dados</h2>
+                <p class="mt-2 text-slate-600">
+                    A análise aprofundada revelou que o problema é apenas a falta de espaço, impedindo o funcionamento físico adequado do CAPSi.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chart 1: Nature of Problem -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 text-center">Natureza do Problema Identificado</h3>
+                    <div class="chart-container">
+                        <canvas id="problemTypeChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-slate-500 mt-4">
+                        O gargalo principal é <strong>logístico</strong> (saber onde está o arquivo para movê-lo).
+                    </p>
+                </div>
+
+                <!-- Chart 2: Time Comparison -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 text-center">Tempo Médio de Recuperação (Minutos)</h3>
+                    <div class="chart-container">
+                        <canvas id="timeComparisonChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-slate-500 mt-4">
+                        A solução proposta reduz o tempo de busca drasticamente, de ~45 min (média atual) para menos de 2 min.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Process Mapping As-Is -->
+            <div class="mt-8 bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4">Gargalo no Processo Atual (As-Is)</h3>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-sm">
+                    <div class="flex-1 bg-stone-100 p-3 rounded text-center border border-stone-200 w-full">Solicitação</div>
+                    <span class="text-2xl text-slate-400 px-2">→</span>
+                    <div class="flex-1 bg-red-100 p-3 rounded text-center border border-red-200 font-bold text-red-700 w-full ring-2 ring-red-300">
+                        Busca Manual em Sala Lotada
+                        <div class="text-xs font-normal mt-1 text-red-600">(30m - 1h)</div>
+                    </div>
+                    <span class="text-2xl text-slate-400 px-2">→</span>
+                    <div class="flex-1 bg-stone-100 p-3 rounded text-center border border-stone-200 w-full">Localização (se houver sorte)</div>
+                    <span class="text-2xl text-slate-400 px-2">→</span>
+                    <div class="flex-1 bg-stone-100 p-3 rounded text-center border border-stone-200 w-full">Entrega</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: SOLUÇÃO (Interactive Demo) -->
+        <section id="solution" class="border-t border-stone-200 pt-10 scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">Solução Proposta: Sistema DPR</h2>
+                <p class="mt-2 text-slate-600">
+                    Apresentamos o conceito do <strong>Sistema de Catalogação de Prontuários Mortos</strong>. 
+                    A prioridade é criar um índice digital robusto (Metadados) antes da digitalização em massa. 
+                    Experimente o simulador abaixo para entender como a busca passará a funcionar.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Tech Stack Column -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-teal-50 border border-teal-100 p-5 rounded-xl">
+                        <h3 class="font-bold text-teal-800 mb-3">Tecnologias Definidas</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center">
+                                <span class="w-8 h-8 rounded bg-white text-teal-700 flex items-center justify-center font-bold shadow-sm mr-3">J</span>
+                                <div>
+                                    <span class="font-bold block">Back-end Java</span>
+                                    <span class="text-slate-500">Segurança, robustez e portabilidade.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-8 h-8 rounded bg-white text-orange-600 flex items-center justify-center font-bold shadow-sm mr-3" role="img" aria-label="Banco de Dados">💾</span>
+                                <div>
+                                    <span class="font-bold block">Banco de Dados (A Definir)</span>
+                                    <span class="text-slate-500">Análise em andamento (SQL vs NoSQL) para melhor adequação.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="w-8 h-8 rounded bg-white text-blue-600 flex items-center justify-center font-bold shadow-sm mr-3">W</span>
+                                <div>
+                                    <span class="font-bold block">Front-end (Web/Desktop)</span>
+                                    <span class="text-slate-500">Interface compatível com infraestrutura local.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Interactive Simulator Column -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-lg border border-stone-200 overflow-hidden">
+                        <div class="bg-slate-800 text-white px-4 py-3 flex justify-between items-center">
+                            <span class="font-mono text-sm">Simulador de Protótipo v0.1</span>
+                            <div class="flex space-x-1">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-bold text-slate-700 mb-4">Busca de Prontuário. (Podendo ter atualizações futuramente)</h4>
+                            
+                            <!-- Simulation Form -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="searchInput" class="block text-sm font-medium text-slate-600 mb-1">ID do Paciente ou Nome</label>
+                                    <div class="flex">
+                                        <input type="text" id="searchInput" placeholder="Ex: 12345 ou Maria Silva" aria-label="Digite ID ou Nome do Paciente" class="flex-1 rounded-l-md border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                        <button onclick="simulateSearch()" class="bg-teal-600 text-white px-4 py-2 rounded-r-md text-sm hover:bg-teal-700 transition font-medium" aria-label="Pesquisar">Pesquisar</button>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Dica: Tente buscar "Maria" ou pressione Enter</p>
+                                </div>
+
+                                <!-- Result Container -->
+                                <div id="searchResult" class="hidden animate-fade-in bg-stone-50 border border-stone-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-bold text-teal-800" id="resName">Maria Silva</h5>
+                                            <p class="text-xs text-slate-500" id="resId">ID: 12345-SUS</p>
+                                        </div>
+                                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold">Catalogado</span>
+                                    </div>
+                                    <hr class="my-3 border-stone-200">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <span class="block text-xs text-slate-400 uppercase">Localização Física</span>
+                                            <span class="font-medium text-slate-700" id="resLoc">Estante B, Prateleira 3, Caixa 12</span>
+                                        </div>
+                                        <div>
+                                            <span class="block text-xs text-slate-400 uppercase">Status Digital</span>
+                                            <span class="font-medium text-amber-600" id="resStatus">Pendente Digitalização</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 pt-2 border-t border-stone-200 flex justify-end">
+                                        <button class="text-xs text-blue-600 hover:underline" onclick="alert('Solicitação de retirada enviada para o depósito!')">Solicitar Retirada Física</button>
+                                    </div>
+                                </div>
+
+                                <!-- Loading State -->
+                                <div id="searchLoader" class="hidden text-center py-4">
+                                    <span class="inline-block w-6 h-6 border-2 border-teal-200 border-t-teal-600 rounded-full animate-spin"></span>
+                                    <p class="text-xs text-slate-400 mt-2">Consultando banco de dados...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-stone-50 px-4 py-2 border-t border-stone-200 text-xs text-slate-500">
+                            <strong>Benefício:</strong> Localização exata em segundos, permitindo envio para depósito externo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: COMPETÊNCIAS -->
+        <section id="skills" class="border-t border-stone-200 pt-10 mb-10 scroll-mt-24">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-800">Competências Desenvolvidas</h2>
+                <p class="mt-2 text-slate-600">
+                    A execução deste diagnóstico permitiu o aprimoramento de hard skills em engenharia e soft skills relacionais, essenciais para a atuação profissional.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tech Skills -->
+                <div class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="bg-blue-100 text-blue-600 p-1 rounded mr-2 text-sm" role="img" aria-label="Engrenagem">⚙️</span> Competências Técnicas
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Engenharia de Requisitos:</strong> Elicitação de necessidades em ambiente complexo (Saúde/SUS) e conformidade LGPD.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Análise de Viabilidade:</strong> Proposição de arquitetura Java e estudo comparativo de Banco de Dados (SQL vs NoSQL).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Modelagem de Dados:</strong> Estruturação de índices para recuperação eficiente.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="bg-white p-6 rounded-xl border border-stone-100 shadow-sm">
+                    <h3 class="font-bold text-slate-800 mb-4 flex items-center">
+                        <span class="bg-green-100 text-green-600 p-1 rounded mr-2 text-sm" role="img" aria-label="Mãos Dadas">🤝</span> Soft Skills
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Comunicação Eficaz:</strong> Tradução de problemas técnicos para stakeholders administrativos.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Ética e Responsabilidade:</strong> Tratamento de dados sensíveis de pacientes menores de idade.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">✓</span>
+                            <span class="text-sm text-slate-600"><strong>Pensamento Crítico:</strong> Priorização estratégica (Catalogar > Digitalizar).</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER: REFERENCES -->
+        <footer class="border-t border-stone-200 pt-8 pb-4 text-center text-slate-500 text-sm">
+            <div class="max-w-4xl mx-auto space-y-2">
+                <p class="font-semibold">Referências</p>
+                <p>BRASIL. Ministério da Saúde. Centros de Atenção Psicossocial (CAPS).</p>
+                <p>PREFEITURA MUNICIPAL DE FOZ DO IGUAÇU. CAPS i Comemora Dois Anos.</p>
+                <p>DATASUS. Cadastro Nacional de Estabelecimentos de Saúde (CNES).</p>
+            </div>
+            <p class="mt-6 text-xs text-slate-400">© 2025 João Miguel Santos - Engenharia de Software</p>
+        </footer>
+
+    </main>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

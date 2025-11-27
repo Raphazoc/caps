@@ -1,0 +1,35 @@
+body { font-family: 'Inter', sans-serif; }
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 350px;
+}
+@media (min-width: 768px) {
+    .chart-container { height: 350px; }
+}
+.glass-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+.nav-active {
+    border-bottom: 2px solid #0d9488;
+    color: #0d9488;
+    font-weight: 600;
+}
+.mobile-nav-active {
+    background-color: #f0fdfa; /* teal-50 */
+    color: #0d9488; /* teal-700 */
+    border-left: 4px solid #0d9488;
+}
+.transition-all-300 {
+    transition: all 0.3s ease-in-out;
+}
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
