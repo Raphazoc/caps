@@ -32,7 +32,7 @@ function scrollToSection(id) {
 	});
 }
 
-// 3. Scroll Spy (Updates Nav based on scroll position)
+// 3. Scroll Spy + All Event Listeners (consolidated in single DOMContentLoaded)
 document.addEventListener("DOMContentLoaded", () => {
 	const sections = document.querySelectorAll("section");
 	const navLinks = document.querySelectorAll(".nav-btn");
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		observer.observe(section);
 	});
 
-	// Add click handlers for nav buttons (desktop & mobile) - separation of concerns
+	// Add click handlers for nav buttons (desktop & mobile)
 	navLinks.forEach((link) => {
 		const target = link.dataset.target;
 		if (target) {
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	// Attach click listener to search button (removed inline onclick in HTML)
+	// Attach click listener to search button
 	const searchBtn = document.getElementById('searchBtn');
 	if (searchBtn) {
 		searchBtn.addEventListener('click', (e) => {
@@ -101,14 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			simulateSearch();
 		});
 	}
-
-	// Delegation: tratar cliques em "Solicitar Retirada Física" gerados dinamicamente
-	document.addEventListener('click', (e) => {
-		const btn = e.target.closest('.request-withdrawal');
-		if (!btn) return;
-		const name = btn.dataset.name || '';
-		alert('Solicitação de retirada enviada para o depósito!' + (name ? ' Paciente: ' + name : ''));
-	});
 
 	// --- Enter Key Support for Search ---
 	const searchInput = document.getElementById('searchInput');
@@ -120,12 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	}
-});
 
-
-// --- Chart Initialization (Chart.js) ---
-// Wrapped in try/catch for safety
-document.addEventListener("DOMContentLoaded", function() {
+	// --- Chart Initialization (Chart.js) ---
 	try {
 		// Chart 1: Problem Breakdown
 		const ctxProblemElement = document.getElementById('problemTypeChart');
@@ -190,6 +178,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
+// --- Delegation: tratar cliques em "Solicitar Retirada Física" (FORA do DOMContentLoaded para capturar dinâmicos) ---
+document.addEventListener('click', (e) => {
+	const btn = e.target.closest('.request-withdrawal');
+	if (!btn) return;
+	const name = btn.dataset.name || '';
+	alert('Solicitação de retirada enviada para o depósito!' + (name ? ' Paciente: ' + name : ''));
+});
+
 // --- Interactive Simulator Logic ---
 function simulateSearch() {
 	const input = document.getElementById('searchInput');
@@ -250,7 +246,7 @@ function simulateSearch() {
 			p.id.toLowerCase().includes(query)
 		);
 
-		// If no match, show all (or show "não encontrado")
+		// If no match, show all
 		const toDisplay = filtered.length > 0 ? filtered : mockData;
 
 		// Update result container with random location/status per item
@@ -258,7 +254,7 @@ function simulateSearch() {
 			result.innerHTML = toDisplay.map((patient, idx) => {
 				const location = generateRandomLocation();
 				const status = generateRandomStatus();
-				// cor do badge conforme status (simples)
+				// cor do badge conforme status
 				const statusColorClass = status === "Catalogado" || status === "Digitalizado"
 					? "text-green-800 bg-green-100"
 					: status === "Pendente Digitalização" || status === "Em Triagem"
