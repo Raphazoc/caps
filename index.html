@@ -22,11 +22,11 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <button onclick="scrollToSection('dashboard')" id="nav-dashboard" class="nav-btn nav-active px-3 py-2 text-sm transition-colors hover:text-teal-600">Visão Geral</button>
-                    <button onclick="scrollToSection('context')" id="nav-context" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Contexto</button>
-                    <button onclick="scrollToSection('diagnosis')" id="nav-diagnosis" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Diagnóstico</button>
-                    <button onclick="scrollToSection('solution')" id="nav-solution" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Solução</button>
-                    <button onclick="scrollToSection('skills')" id="nav-skills" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Competências</button>
+                    <button id="nav-dashboard" data-target="dashboard" class="nav-btn nav-active px-3 py-2 text-sm transition-colors hover:text-teal-600">Visão Geral</button>
+                    <button id="nav-context" data-target="context" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Contexto</button>
+                    <button id="nav-diagnosis" data-target="diagnosis" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Diagnóstico</button>
+                    <button id="nav-solution" data-target="solution" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Solução</button>
+                    <button id="nav-skills" data-target="skills" class="nav-btn px-3 py-2 text-sm transition-colors hover:text-teal-600">Competências</button>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -43,11 +43,11 @@
         <!-- Mobile Menu Panel (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-stone-200 shadow-lg absolute w-full top-16 left-0">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <button onclick="scrollToSection('dashboard')" id="mob-nav-dashboard" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Visão Geral</button>
-                <button onclick="scrollToSection('context')" id="mob-nav-context" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Contexto</button>
-                <button onclick="scrollToSection('diagnosis')" id="mob-nav-diagnosis" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Diagnóstico</button>
-                <button onclick="scrollToSection('solution')" id="mob-nav-solution" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Solução</button>
-                <button onclick="scrollToSection('skills')" id="mob-nav-skills" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Competências</button>
+                <button id="mob-nav-dashboard" data-target="dashboard" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Visão Geral</button>
+                <button id="mob-nav-context" data-target="context" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Contexto</button>
+                <button id="mob-nav-diagnosis" data-target="diagnosis" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Diagnóstico</button>
+                <button id="mob-nav-solution" data-target="solution" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Solução</button>
+                <button id="mob-nav-skills" data-target="skills" class="mobile-nav-btn block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:text-teal-800 hover:bg-stone-50 rounded-md">Competências</button>
             </div>
         </div>
     </nav>
@@ -298,9 +298,9 @@
                                     <label for="searchInput" class="block text-sm font-medium text-slate-600 mb-1">ID do Paciente ou Nome</label>
                                     <div class="flex">
                                         <input type="text" id="searchInput" placeholder="Ex: 12345 ou Maria Silva" aria-label="Digite ID ou Nome do Paciente" class="flex-1 rounded-l-md border border-stone-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
-                                        <button onclick="simulateSearch()" class="bg-teal-600 text-white px-4 py-2 rounded-r-md text-sm hover:bg-teal-700 transition font-medium" aria-label="Pesquisar">Pesquisar</button>
+                                        <button id="searchBtn" class="bg-teal-600 text-white px-4 py-2 rounded-r-md text-sm hover:bg-teal-700 transition font-medium" aria-label="Pesquisar">Pesquisar</button>
                                     </div>
-                                    <p class="text-xs text-slate-400 mt-1">Dica: Tente buscar "Maria" ou pressione Enter</p>
+                                    <p class="text-xs text-slate-400 mt-1">Dica: Tente buscar "Maria" ou "João" e pressione Enter</p>
                                 </div>
 
                                 <!-- Result Container -->
@@ -324,7 +324,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3 pt-2 border-t border-stone-200 flex justify-end">
-                                        <button class="text-xs text-blue-600 hover:underline" onclick="alert('Solicitação de retirada enviada para o depósito!')">Solicitar Retirada Física</button>
+                                        <button class="text-xs text-blue-600 hover:underline request-withdrawal" data-name="Maria Silva">Solicitar Retirada Física</button>
                                     </div>
                                 </div>
 
